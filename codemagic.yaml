@@ -5,16 +5,16 @@ workflows:
     environment:
       vars:
         EMAIL_RECIPIENT: "kssarras@gmail.com"
-      android_signing:
+      android_signing:          # <-- CORREGIDO: sin 's' al final
         - videitos_keystore
     scripts:
       - name: Get Flutter packages
-        script: flutter packages pub get
+        script: flutter packages pub get   # <-- CORREGIDO: pub get
       - name: Build AAB with Flutter
         script: |
-          flutter build appbundle --release
+          flutter build appbundle --release   # <-- CORREGIDO: appbundle
     artifacts:
-      - build/**/outputs/**/*.aab
+      - build/**/outputs/**/*.aab             # <-- CORREGIDO: .aab
     publishing:
       email:
         recipients:
