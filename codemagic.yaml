@@ -1,0 +1,24 @@
+workflows:
+  android-release-workflow:
+    name: Android Release Workflow
+    max_build_duration: 60
+    environment:
+      vars:
+        EMAIL_RECIPIENT: "kssarras@gmail.com"
+      android_signing:
+        - videitos_keystore
+    scripts:
+      - name: Get Flutter packages
+        script: flutter packages pub get
+      - name: Build AAB with Flutter
+        script: |
+          flutter build appbundle --release
+    artifacts:
+      - build/**/outputs/**/*.aab
+    publishing:
+      email:
+        recipients:
+          - kssarras@gmail.com
+        notify:
+          success: true
+          failure: true
