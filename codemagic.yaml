@@ -3,18 +3,19 @@ workflows:
     name: Android Release Workflow
     max_build_duration: 60
     environment:
+      flutter: 3.41.4           # <-- Agrega esta línea
       vars:
         EMAIL_RECIPIENT: "kssarras@gmail.com"
-      android_signing:          # <-- CORREGIDO: sin 's' al final
+      android_signing:
         - videitos_keystore
     scripts:
       - name: Get Flutter packages
-        script: flutter packages pub get   # <-- CORREGIDO: pub get
+        script: flutter packages pub get
       - name: Build AAB with Flutter
         script: |
-          flutter build appbundle --release   # <-- CORREGIDO: appbundle
+          flutter build appbundle --release
     artifacts:
-      - build/**/outputs/**/*.aab             # <-- CORREGIDO: .aab
+      - build/**/outputs/**/*.aab
     publishing:
       email:
         recipients:
